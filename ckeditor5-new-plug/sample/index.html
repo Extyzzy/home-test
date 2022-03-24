@@ -36,7 +36,13 @@
 
 					</div>
 				</div>
-			</div></div>
+			</div>
+
+			<button onclick="getData()">Get Data</button>
+			<br>
+
+			<button onclick="setData()">Set Content</button>
+		</div>
 		</div>
 	</main>
 	<footer>
@@ -49,7 +55,22 @@
 		</p>
 	</footer>
 	<script src="../build/ckeditor.js"></script>
+
+
+
+
 	<script>
+
+		function setData() {
+			console.info(editor.data)
+
+			editor.setData('<section class="box-img"><div class="box-img-container bug-back-image" style="background-image:url(https://images.unsplash.com/photo-1444464666168-49d633b86797?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1649&amp;q=80);">&nbsp;</div><div class="box-img-description"><p>Ruslan</p></div></section>');
+		}
+		function getData() {
+			console.info(editor.data)
+			console.info(editor.data.get())
+		}
+
 		class MyUploadAdapter {
 			constructor( loader ) {
 				// The file loader instance to use during the upload.
@@ -161,8 +182,15 @@
 					items: [
 						'heading',
 						'|',
-						'backImageTest',
+						'imgBox',
+						'blueback',
 						'toogle',
+						'|',
+						'greyBox',
+						'yellowBox',
+						'greenBox',
+						'redBox',
+						'|',
 						'button',
 						'bold',
 						'italic',
@@ -193,6 +221,15 @@
 						'imageInsert',
 						'todoList',
 						'underline'
+					]
+				},
+				heading: {
+					options: [
+						{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+						{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+						{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+						{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+						{ model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
 					]
 				},
 				link: {
@@ -229,23 +266,26 @@
 
 			} )
 			.then( editor => {
+				window.editor = editor;
+
 				const insertBox = editor.commands.get('insertSimpleBox')
 				const toggle = event => {
-					if (event.srcElement.parentElement.children[1].classList.contains('show')) {
-						console.info('passed first if')
-						event.srcElement.parentElement.children[1].classList.remove("show");
+					if (event.srcElement.parentElement.parentElement.children[1].classList.contains('show')) {
+						event.srcElement.parentElement.parentElement.children[1].classList.remove("show");
+						event.srcElement.parentElement.parentElement.children[0].classList.add("less-icon")
 					} else {
-						console.info('passed second if')
-						event.srcElement.parentElement.children[1].classList.add("show");
+						event.srcElement.parentElement.parentElement.children[1].classList.add("show");
+						event.srcElement.parentElement.parentElement.children[0].classList.remove("less-icon")
 					}
 				}
 
 				insertBox.on('execute', () => {
+
 					const divs = document.querySelectorAll('.simple-box-title');
 
 					for (let i = 0; i < divs.length; ++i) {
-						divs[i].removeEventListener('click', toggle);
-						divs[i].addEventListener('click', toggle);
+						divs[i].firstChild.removeEventListener('click', toggle);
+						divs[i].firstChild.addEventListener('click', toggle);
 					}
 				})})
 			.catch( error => {

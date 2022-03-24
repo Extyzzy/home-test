@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>misc / dot_04_l</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="24" height="24"></rect>
+    </defs>
+    <g id="*-Product-pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Element/contentpage/orangefolder" transform="translate(-31.000000, -128.000000)">
+            <g id="misc-/-dot_04_l" transform="translate(31.000000, 128.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="misc-/-dot_04_l-(Background/Mask)"></g>
+                <path d="M12,17 C14.7614237,17 17,14.7614237 17,12 C17,9.23857625 14.7614237,7 12,7 C9.23857625,7 7,9.23857625 7,12 C7,14.7614237 9.23857625,17 12,17 Z" fill="#2E3A59" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
